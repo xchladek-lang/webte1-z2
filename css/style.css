@@ -1,0 +1,191 @@
+/* =====================================================================
+   style.css – vlastné štýly (zvyšok riešia triedy Bootstrapu)
+   ===================================================================== */
+
+/* Font Poppins uložený lokálne: 400 = normálny, 700 = tučný */
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/poppins-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../fonts/poppins-bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Farebná paleta + prepísané premenné Bootstrapu */
+:root {
+    --verdigris: #1b998b;       /* akcent: rámiky, ikony */
+    --verdigris-dark: #137366;  /* akcent pre text (lepší kontrast) */
+    --lavender: #f8f1ff;
+    --thistle: #decdf5;
+    --dim-grey: #656176;
+    --charcoal: #534d56;
+
+    --bs-body-font-family: "Poppins", sans-serif;
+    --bs-body-color: var(--charcoal);
+    --bs-body-bg: var(--lavender);
+    --bs-secondary-rgb: 101, 97, 118;   /* .text-secondary = dim grey */
+    --bs-border-color: var(--thistle);
+    --bs-border-radius: 0;              /* hranaté prvky */
+    --bs-border-radius-sm: 0;
+    --bs-border-radius-lg: 0;
+    --bs-link-color-rgb: 19, 115, 102;
+}
+
+/* Pätička vždy dole */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Hlavička a pätička */
+.site-header,
+.site-footer {
+    background-color: var(--charcoal);
+    color: var(--lavender);
+}
+
+.site-header {
+    border-top: 4px solid var(--verdigris);
+}
+
+.site-header .nav-link.active {
+    box-shadow: inset 0 -3px 0 var(--verdigris);
+}
+
+/* Malé nadpisy veľkými písmenami */
+.eyebrow,
+.panel-title,
+.day-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.eyebrow {
+    color: var(--verdigris-dark);
+}
+
+.panel-title {
+    color: var(--dim-grey);
+}
+
+.text-accent {
+    color: var(--verdigris);
+}
+
+/* Bočný panel */
+.panel {
+    background-color: #fff;
+    border: 1px solid var(--thistle);
+    border-left: 4px solid var(--verdigris);
+}
+
+.btn-accent {
+    --bs-btn-bg: var(--verdigris-dark);
+    --bs-btn-border-color: var(--verdigris-dark);
+    --bs-btn-color: #fff;
+    --bs-btn-hover-bg: var(--charcoal);
+    --bs-btn-hover-border-color: var(--charcoal);
+    --bs-btn-hover-color: #fff;
+}
+
+.form-check-input:checked {
+    background-color: var(--verdigris-dark);
+    border-color: var(--verdigris-dark);
+}
+
+/* Záložky dní */
+.day-tabs {
+    border-bottom: 2px solid var(--thistle);
+}
+
+.day-tab {
+    background: none;
+    border: 0;
+    padding: 0.6rem 0.9rem;
+    color: var(--dim-grey);
+    margin-bottom: -2px;
+    border-bottom: 3px solid transparent;
+}
+
+.day-tab.active {
+    color: var(--verdigris-dark);
+    font-weight: 700;
+    border-bottom-color: var(--verdigris);
+}
+
+/* Karta reštaurácie */
+.restaurant-card {
+    border: 1px solid var(--thistle);
+    border-top: 4px solid var(--verdigris);
+}
+
+.day-title {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--thistle);
+}
+
+.menu-item {
+    padding: 0.65rem 0;
+    border-bottom: 1px dashed var(--thistle);
+}
+
+.menu-item:last-child {
+    border-bottom: 0;
+}
+
+/* Cena */
+.price {
+    color: var(--verdigris-dark);
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.price small {
+    display: block;
+    font-weight: 400;
+    color: var(--dim-grey);
+}
+
+/* Typy jedál */
+.badge {
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.badge-soup {
+    background-color: var(--thistle);
+    color: var(--charcoal);
+}
+
+.badge-main {
+    background-color: var(--verdigris-dark);
+    color: #fff;
+}
+
+.badge-other {
+    border: 1px solid var(--dim-grey);
+    color: var(--dim-grey);
+}
+
+/* Týždenný špeciál */
+.notes {
+    background-color: var(--lavender);
+    border-left: 3px solid var(--thistle);
+    padding: 0.75rem 1rem;
+}

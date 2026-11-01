@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ako funguje stránka Obedové menu v okolí FEI STU – zdroje dát, spracovanie a použité knižnice.">
+    <meta name="author" content="Samuel David Chládek">
+    <title>O projekte | Obedové menu v okolí FEI STU</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md" data-bs-theme="dark" aria-label="Hlavná navigácia">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="bi bi-cup-hot-fill text-accent" aria-hidden="true"></i> Obedy pri FEI
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainMenu" aria-controls="mainMenu"
+                        aria-expanded="false" aria-label="Zobraziť navigáciu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="o-projekte.html">O projekte</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4 py-md-5">
+        <h1 class="display-6 fw-bold mb-2">O projekte</h1>
+        <p class="text-secondary mb-5">
+            Stránka zbiera denné obedové menu z troch reštaurácií v okolí FEI STU
+            a zobrazuje ich prehľadne podľa dní v týždni.
+        </p>
+
+        <div class="row g-4">
+
+            <!-- Zdroje dát -->
+            <div class="col-12 col-lg-6">
+                <section class="card restaurant-card h-100" aria-labelledby="sourcesTitle">
+                    <div class="card-body p-4">
+                        <h2 id="sourcesTitle" class="h5 fw-bold mb-3">
+                            <i class="bi bi-shop text-accent" aria-hidden="true"></i> Odkiaľ sú dáta
+                        </h2>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <a href="https://www.druzbacatering.sk/jedalny-listok/" target="_blank" rel="noopener" class="fw-bold">Družba Cantina</a>
+                                <div class="small text-secondary">Botanická 25, 842 14 Bratislava</div>
+                                <div class="small">Každý deň má nadpis &lt;h2&gt; a pod ním tabuľku s jedlami a cenami.</div>
+                            </li>
+                            <li class="mb-3">
+                                <a href="https://eatandmeet.sk/tyzdenne-menu" target="_blank" rel="noopener" class="fw-bold">Eat &amp; Meet</a>
+                                <div class="small text-secondary">Staré Grunty 36, Átriaky, Blok AD-U, Bratislava</div>
+                                <div class="small">Dni sú záložky #day-1 až #day-7, jedlá sú bloky s nadpisom, cenou a popisom. Dátumy dopočítavame.</div>
+                            </li>
+                            <li>
+                                <a href="https://www.nasehospoda-karloveska.sk/" target="_blank" rel="noopener" class="fw-bold">Naše Hospoda Karloveská</a>
+                                <div class="small text-secondary">Segnerova 3, 841 02 Bratislava – Karlova Ves</div>
+                                <div class="small">Sekcia #menu, každý deň je samostatný &lt;article&gt;; týždenný špeciál zobrazujeme ako poznámku.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Spracovanie -->
+            <div class="col-12 col-lg-6">
+                <section class="card restaurant-card h-100" aria-labelledby="processingTitle">
+                    <div class="card-body p-4">
+                        <h2 id="processingTitle" class="h5 fw-bold mb-3">
+                            <i class="bi bi-diagram-3 text-accent" aria-hidden="true"></i> Ako sa dáta spracúvajú
+                        </h2>
+                        <ol class="mb-0">
+                            <li class="mb-2"><strong>Lokálne kópie</strong> – prehliadač kvôli politike CORS nedovolí načítať cudziu stránku priamo, preto sú zdrojové kódy stránok reštaurácií uložené v priečinku local/.</li>
+                            <li class="mb-2"><strong>fetch</strong> – kópie sa načítajú asynchrónne cez Fetch API.</li>
+                            <li class="mb-2"><strong>DOMParser</strong> – HTML text sa zmení na DOM strom, v ktorom hľadáme cez querySelector a querySelectorAll.</li>
+                            <li class="mb-2"><strong>Jednotná štruktúra</strong> – každá reštaurácia má vlastnú funkciu, ktorá vráti pole objektov s dňom, dátumom, typom, názvom, cenou, alergénmi a gramážou.</li>
+                            <li class="mb-2"><strong>localStorage</strong> – výsledok sa uloží v prehliadači; ak sú dáta z dnešného dňa, stránky sa znova nenačítavajú.</li>
+                            <li><strong>Zobrazenie</strong> – karty sa skladajú cez createElement a textContent, cudzie HTML sa do stránky nikdy nevkladá.</li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Knižnice -->
+            <div class="col-12">
+                <section class="card restaurant-card" aria-labelledby="librariesTitle">
+                    <div class="card-body p-4">
+                        <h2 id="librariesTitle" class="h5 fw-bold mb-3">
+                            <i class="bi bi-box-seam text-accent" aria-hidden="true"></i> Použité knižnice a zdroje
+                        </h2>
+                        <ul class="mb-0">
+                            <li><a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap 5.3.3</a> – CSS (mriežka, karty, tlačidlá, spinner) a JS (rozbaľovacia navigácia, Toast).</li>
+                            <li><a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener">Bootstrap Icons 1.11.3</a> – ikony.</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer py-4 mt-5">
+        <div class="container small">
+            <div class="row g-2">
+                <div class="col-12 col-md-6">
+                    &copy; 2026 Samuel David Chládek · WEBTE1, Zadanie č. 2, FEI STU
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
